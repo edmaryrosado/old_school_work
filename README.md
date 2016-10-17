@@ -10,5 +10,6 @@ This repo houses a series of small projects from both undergrad and graduate com
     <li>Island World</li>
     </ul>
   <li>Router Simulator</li>
+  <li>Cafe Simulator</li>
   <li>Slot Machine Game</li>
 </ul>
