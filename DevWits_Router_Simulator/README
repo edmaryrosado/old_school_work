@@ -1,0 +1,9 @@
+DevWits Internet Share Simulator (Router Simulator)
+
+What the dis_simulator does is simulate an internet share within a campus of sorts. The euclidean distance is used in order to determine the range between two laptops.  It uses binary search trees to find and store mac addresses of computers participating in the simulated internet share.
+
+The simulator does not output anything to console. Once the main file (dis_simulator.c) is executed, it will simply output to dis_simulator.out.
+
+To Run DevWits Internet Share from Source:
+gcc -o dis_simulator dis_simulator.c
+./dis_simulator
