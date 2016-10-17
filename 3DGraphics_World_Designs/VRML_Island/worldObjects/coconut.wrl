@@ -1,0 +1,19 @@
+#VRML V2.0 utf8
+# Filename: coconut.wrl
+# Description: A sphere with coconut texture
+# Author: Edmary Rosado-Vega
+# Summer 2014
+Group{
+	children[
+		DEF PalmtreeTrunk Shape{
+			appearance Appearance{
+				texture ImageTexture {
+                             repeatS TRUE
+                             repeatT TRUE
+                             url "./objectTextures/coconut.png"
+                }
+			}
+			geometry Sphere{}
+		}
+	]
+}

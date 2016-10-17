@@ -1,0 +1,285 @@
+#VRML V2.0 utf8
+# Filename: lighthouseWorld.wrl
+# Description: A lighthouse in an oceanic scene at sunset
+# Images courtesy of badmummynocookie.com, stock photo sites 
+# and some old portfolio photos
+# Author: Edmary Rosado-Vega
+
+#
+#  World Info
+#
+WorldInfo {
+        title "Lighthouse World"
+        info [ "Copyright (c) 2014, Edmary Rosado-Vega" ]
+}
+
+#
+#  Viewpoint
+#
+Viewpoint {
+    position -8.0 15.6 45.0
+    orientation 1.0 20.0 0.0 0.1
+}
+
+#
+#  Navigation Info
+#
+NavigationInfo {
+    type [ "WALK", "ANY" ]
+    headlight FALSE
+    speed 2.0
+}
+
+#
+#  Low Intensity Directional Light 
+#
+DirectionalLight {
+    ambientIntensity 0.03
+    direction 0.0 -1.0 -0.5
+}
+
+#
+#  Sky -- Sunset
+#
+Background {
+    skyColor [
+		1.0 0.0 0.8, 0.5 0.0 0.8, 0.0 0.0 0.8 # Blue and Purple mix
+    ]
+    skyAngle [
+        1.371,
+        1.571,
+    ]
+}
+
+#
+#  Island
+#
+DEF	Island Transform {
+ scale 2 1 1.5
+ children [
+	 Inline {url "./worldObjects/small_island.wrl"}
+	 
+	## Island Sounds
+	 Sound {
+		 source AudioClip {
+		  url "./worldObjects/objectSounds/beach_soundscape.wav"
+		  startTime	1.0
+		  stopTime 0.0
+		  loop TRUE
+		 }
+		 intensity 0.5
+		 minFront 5.0
+		 minBack 5.0
+		 maxFront 100.0
+		 maxBack 100.0
+	 },
+	 Inline	{url "sndmark.wrl"}
+
+	## Big Mountain (Modified version of mountain from book)
+	DEF	BigMountain Transform	{
+	scale 3 3 3
+	translation -10.0 -1.5 -25.0
+	rotation -1 0 0 .20
+		children [
+			Inline {url	"./worldObjects/big_mountain.wrl"}
+		]
+	}
+	
+	## Original Little Mountain
+	DEF	LittleMountain Transform{
+		scale 3 2.2 3
+		translation -15.0 -1 -25.0
+		children [
+			Inline {url	"./worldObjects/little_mountain.wrl"}
+		]
+	}
+	
+	## Little Mountain Reuse
+	Transform {
+		scale 2 1 2
+		rotation 0 -1 0 1.5
+		translation -25.0 -2 3
+		children [
+			USE LittleMountain
+		]
+	}
+	## Shore Rocks
+	DEF	ShoreRocks Transform{
+		scale .75 .75 .75
+		rotation 0 1 0 .17
+		translation -15.0 1 -3.0
+		children [
+			Inline {url	"./worldObjects/shore_rocks.wrl"}
+		]
+	}
+	## Shore Rocks Reuse
+	Transform {
+		translation -5. -4.0 3
+		rotation -1 0 -1 .17
+		children [
+			USE ShoreRocks
+		]
+	}
+ ]
+}
+
+#
+# Coconut Trees
+#
+Group{
+	children[
+		DEF CoconutTree Transform{
+			translation -1 5 1
+			scale .5 .75 .5
+			children[
+				Inline {url "./worldObjects/coconut_tree.wrl"}
+			]
+		}
+		Transform { translation   -5.0   1.00  -6.0 rotation  1 0 0 .75 children USE CoconutTree }
+		Transform { translation   20.0  -2.25  10.0 rotation -1 0 0 .50 children USE CoconutTree }
+		Transform { translation   10.0  -4.5   20.0 rotation  1 0 0 .15 children USE CoconutTree }
+		Transform { translation  -15.0  -4.5   22.0 rotation -1 0 0 .15 children USE CoconutTree }
+		Transform { translation   30.0  -4.5  -20.0 rotation -1 0 0 .75 children USE CoconutTree }
+		Transform { translation   10.0  -4.5   15.0 rotation  1 0 0 .15 children USE CoconutTree }
+	]
+}
+
+#
+# Scattered Coconuts
+#
+Group{
+	children[
+		DEF Coconut Transform{
+			translation 0 5 0
+			scale .15 .15 .15
+			children[
+				Inline {url "./worldObjects/coconut.wrl"}
+			]
+		}
+
+		Transform { translation   20.0    -0.25   10.0 rotation -1 0 0 .75 children USE Coconut }
+		Transform { translation    8.75   -2.53   20.0 rotation  1 0 0 .15 children USE Coconut }
+		Transform { translation  -14.75   -2.60   22.0 rotation -1 0 0 .15 children USE Coconut }
+		Transform { translation   30.0    -2.30  -20.0 rotation -1 0 0 .75 children USE Coconut }
+		Transform { translation   10.0    -2.00   16.0 rotation  1 0 0 .15 children USE Coconut }
+	]
+}
+
+#
+#	Ocean and Ocean Floor
+#
+DEF	Ocean Transform	{
+##	Texture Under Transparent Water Grid
+	children[
+		Shape {
+    		appearance Appearance {
+        		material Material { }
+        		texture ImageTexture { url "./textures/sand.jpg" }
+        		textureTransform TextureTransform { scale 10.0 10.0 }
+    		}
+    		geometry IndexedFaceSet {
+        		coord Coordinate {
+            	point [
+                -120.0 -1.0  120.0,
+                 120.0 -1.0  120.0,
+                 120.0 -1.0 -120.0,
+                -120.0 -1.0 -120.0,
+            	]
+        		}
+        		coordIndex [ 0, 1, 2, 3 ]
+        		solid FALSE
+    		}
+		},
+		DEF OceanSquare Transform {
+			translation	-60 0 -45
+			#rotation -1 1 1 6.28
+			scale 3 1 3
+			children [
+				
+				Inline	{
+					url "./worldObjects/oceanGrid.wrl"
+				}
+			]
+		}
+		
+		# Several Instances of The Ocean Square (Surrounding Original)
+		Transform {translation  0   0  -60 children USE OceanSquare },
+		Transform {translation  0   0  -30 children USE OceanSquare },
+		Transform {translation  0   0   30 children USE OceanSquare },
+		Transform {translation  0   0   60 children USE OceanSquare },
+		Transform {translation  0   0   90 children USE OceanSquare },
+		Transform {translation  0   0  120 children USE OceanSquare },
+		Transform {translation  0   0  150 children USE OceanSquare },
+
+		# Grouped Ocean Squares to Reuse Around Island
+		DEF OceanSquareGroup Group{
+			children[
+				# At translation -48 
+				Transform {translation  -48   0  -60 children USE OceanSquare },
+				Transform {translation  -48   0  -30 children USE OceanSquare },
+				Transform {translation  -48   0    0 children USE OceanSquare },
+				Transform {translation  -48   0   30 children USE OceanSquare },
+				Transform {translation  -48   0   60 children USE OceanSquare },
+				Transform {translation  -48   0   90 children USE OceanSquare },
+				Transform {translation  -48   0  120 children USE OceanSquare },
+				Transform {translation  -48   0  150 children USE OceanSquare },
+			]
+		}
+
+		Transform {translation 24 0 0 children USE OceanSquareGroup},
+		Transform {translation 72 0 0 children USE OceanSquareGroup},
+		Transform {translation 96 0 0 children USE OceanSquareGroup}
+		Transform {translation 120 0 0 children USE OceanSquareGroup}
+		Transform {translation 144 0 0 children USE OceanSquareGroup}
+		Transform {translation 168 0 0 children USE OceanSquareGroup},
+		Transform {translation 192 0 0 children USE OceanSquareGroup},
+		Transform {translation 216 0 0 children USE OceanSquareGroup}
+		
+
+	]
+}
+
+
+#
+#	Lighthouse
+#
+DEF Lighthouse Transform {
+	scale 1 1.5 1 
+	translation -25.0 14.5 -5.0
+	children [
+		Inline	{url "./worldObjects/lighthouse.wrl"}
+	]
+}
+
+#
+#	Pier
+#
+DEF	IslandPier Transform {
+	scale 1.2 1.2 3
+	translation	-45 .5 -2
+	rotation 0 1 0 4.71
+	children [
+		Inline {url	"./worldObjects/pier.wrl"}
+	]
+}
+
+#
+#	Beach Ball
+#
+DEF BeachBall Transform{
+	scale .25 .25 .25
+	translation -38 .5 4
+	children[
+		Inline {url "./worldObjects/beach_ball.wrl"}
+	]
+}
+
+#
+# Island Hut
+#
+DEF IslandHut Transform{
+	translation -5 5.75 6
+	children[
+		Inline {url "./worldObjects/island_hut.wrl"}
+	]
+}
