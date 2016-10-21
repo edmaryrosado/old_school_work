@@ -1,0 +1,144 @@
+#VRML V2.0 utf8
+# Filename: island_hut.wrl
+# Description: A small island hut with tikis out front
+# Author: Edmary Rosado-Vega
+# Summer 2014
+Group{
+	children[
+		#
+		# Tiki Pair 
+		#
+		DEF	TikiPair Transform{
+			translation 1 0 .5
+			children[
+				
+				# Singular Support Column
+				DEF Tiki Shape{
+					appearance Appearance{
+						texture ImageTexture {
+                             repeatS TRUE
+                             repeatT TRUE
+                             url "./objectTextures/tiki.jpg" # use tiki image 
+                		}
+					}
+					geometry Cylinder {
+					 height	2
+					 radius	.25
+					}
+				}
+				Transform {translation -3.25 0 0 children USE Tiki},
+			]
+		},
+		#
+		# Hut Walls Group
+		#
+		DEF HutWalls Group{
+			
+			children[
+				# Left Wall
+				DEF	HutWall Transform	{
+					translation	-4 1 -2.5
+					rotation 0 1 0 1.57
+					children [
+
+						Shape {
+					  
+							appearance Appearance{
+								texture ImageTexture {
+                            		repeatS TRUE
+                            		repeatT TRUE
+                            		url "./objectTextures/straw_texture.jpg" # hut wall texture
+                				}
+							}
+
+							geometry Box {
+								size 4 4 .5
+							}		
+						}
+					]
+				},
+				Transform {translation 6.5 0 0 children USE HutWall}, # Right Wall
+				Transform {scale 1 1 1.5 translation -4.5 0 -0.25 rotation 0 -1 0 1.57 children USE HutWall}, # Back Wall
+				Transform {scale 1 1 0.5 translation -4.5 0  3.75 rotation 0 -1 0 1.57 children USE HutWall}, # Left Front Wall
+				Transform {scale 1 1 0.5 translation  0.5 0  3.75 rotation 0 -1 0 1.57 children USE HutWall}, # Right Front Wall
+
+			]
+		},
+		
+		#
+		# Hut Roof
+		#
+		DEF HutRoof Transform{
+			translation -.75 4 -2
+			rotation 0 1 0 1.57
+			children[
+				Shape {
+					appearance Appearance{
+						material Material { 
+							diffuseColor     0.59 0.41 0.31
+						}
+						texture ImageTexture {
+							repeatS TRUE
+							repeatT TRUE
+							url "./objectTextures/straw_texture.jpg" # hut roof texture
+						}
+					}
+					geometry IndexedFaceSet {
+						coord Coordinate {
+							point [
+								# bottom 
+								-3.0 -1.0  4.00,	#vertex 0
+								3.0 -1.0  4.00,	#vertex 1
+								3.0 -1.0 -4.00,	#vertex 2
+								-3.0 -1.0 -4.00,	#vertex 3
+								# top
+								0.0 1.0 0.0		#vertex 4
+							]
+						}
+						coordIndex [
+							#bottom square
+							0, 3, 2, 1, 0, -1,
+							#side1
+							0, 1, 4, -1,
+							#side2
+							1, 2, 4, -1,
+							#side3
+							2, 3, 4, -1,
+							#side4
+							3, 0, 4, -1,
+						]
+			
+					}
+				}
+			]
+		},
+		
+		#
+		# Hut Foundation
+		#
+		DEF HutFoundation Transform{
+			translation -0.75 -1.05 -2
+			children[
+				Shape{
+					appearance Appearance{
+						material Material { 
+							diffuseColor     0.59 0.41 0.31
+						}
+						texture ImageTexture {
+							repeatS TRUE
+							repeatT TRUE
+							url "./objectTextures/mountain_texture.jpg" # hut roof texture
+						}
+					}
+					geometry Box{
+						size 7.5 .15 6
+					}
+				}
+			]
+		},
+		
+		#
+		# Hut Interior
+		#
+	]
+}

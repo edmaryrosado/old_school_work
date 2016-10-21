@@ -1,0 +1,372 @@
+#VRML V2.0 utf8
+ # Filename: lighthouse.wrl
+ # Description: Lighthouse with functional rotating light 
+ # Author: Edmary Rosado-Vega
+ # Summer 2014
+Group{
+	children[
+
+		DEF	Lighthouse Transform{
+			children [
+				## Lighthouse Body
+				DEF	LighthouseBody Transform{
+					translation	0 -5 0 
+					scale 1.25 4 1
+					children [
+						Shape{
+							appearance	Appearance {
+							#	material Material {
+							#		diffuseColor 1.0 1.0 1.0  #make this blocked indigo and white
+							#	}
+								texture	ImageTexture {
+									url ["./objectTextures/lighthouse_stripes.png"]
+								}
+							}
+							geometry Extrusion {
+								beginCap FALSE
+								solid FALSE
+								creaseAngle 0.785
+								crossSection [
+									 1.00   0.00,   0.92 -0.38,
+									 0.71  -0.71,   0.38 -0.92,
+									 0.00  -1.00,  -0.38 -0.92,
+									-0.71  -0.71,  -0.92 -0.38,
+									-1.00   0.00,  -0.92  0.38,
+									-0.71   0.71,  -0.38  0.92,
+									 0.00   1.00,   0.38  0.92,
+									 0.71   0.71,   0.92  0.38,
+									 1.00   0.00
+								]
+								spine [0.0 -1.0 0.0, 0.0 1.0 0.0]
+								scale [ 2.000000 2.000000, 1.2500000 1.2500000]
+							}
+						}
+					]
+				},
+				## Lighthouse Top Glass
+				DEF	LighthouseTopGlass Transform{
+					children [
+						Shape {
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.65, 0.86, 0.99
+									transparency 0.5
+								}
+							}
+							geometry Cylinder {
+								radius	1.75
+								height	1.75
+								bottom FALSE
+                				side TRUE
+    							top FALSE
+							}
+						}
+					]
+				},
+				## Bottom Cap of Lighthouse top
+				DEF	Endcap Transform {
+					translation	0 -.92 0
+
+					children [
+			   			Shape{
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.03, 0.18, 0.33
+								}
+							}
+							geometry Cylinder {
+								radius	2
+								height	.15
+								bottom TRUE
+                				side TRUE
+    							top TRUE
+							}
+						},
+
+					]
+				},
+				## Metallic Rings for Lighthouse top
+				DEF	Ring Transform {
+					translation	0 -.62 0
+
+					children [
+			   			Shape{
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.9, 0.91, 0.98
+								}
+							}
+							geometry Cylinder {
+								radius	1.77
+								height	.1
+								bottom FALSE
+                				side TRUE
+    							top FALSE
+							}
+						},
+
+					]
+				},
+				Transform
+				{
+					translation 0 .62 0
+					children
+						[ USE Ring ] ## Another Ring
+				},
+				Transform
+				{
+					translation 0 1.32 0
+					children
+						[ USE Ring ] ## Another Ring
+				},
+				## Lighthouse Top Support Pillars
+				DEF	SupportPillar Transform{
+					translation	0 0 -1.75
+
+					children [
+			   			Shape{
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.9, 0.91, 0.98
+								}
+							}
+							geometry Cylinder {
+								radius	.1
+								height	1.75
+								bottom TRUE
+                				side TRUE
+    							top TRUE
+							}
+						},
+
+					]
+				},
+				Transform
+				{
+					translation 0 0 3.5
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+				Transform
+				{
+					translation -1.75 0 1.75
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+				Transform
+				{
+					translation 1.75 0 1.75
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+				# Bottom Base of Lighthouse lightbulb
+				DEF	LightBulbBase Transform{
+					translation	0.0 -.75 0.0
+					scale .25 .25 .25
+					children [
+						Shape{
+
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.9, 0.91, 0.98  
+								}
+							}
+							geometry Extrusion {
+								creaseAngle 0.785
+								crossSection [
+									 1.00   0.00,   0.92 -0.38,
+									 0.71  -0.71,   0.38 -0.92,
+									 0.00  -1.00,  -0.38 -0.92,
+									-0.71  -0.71,  -0.92 -0.38,
+									-1.00   0.00,  -0.92  0.38,
+									-0.71   0.71,  -0.38  0.92,
+									 0.00   1.00,   0.38  0.92,
+									 0.71   0.71,   0.92  0.38,
+									 1.00   0.00
+								]
+								spine [0.0 -1.0 0.0, 0.0 1.0 0.0]
+								scale [ 2.000000 2.000000, 1.000000 1.000000]
+							}
+						}
+					]
+				}
+				Transform {
+					rotation 1 0 0 3.14
+					translation	0 -.25 0
+					children
+						[USE LightBulbBase ] #Top base of lightbulb
+
+				}
+				# Lighthouse Top
+				DEF	LighthouseTop Transform	{
+					translation	0 1.12 0
+					scale .75 .75 .75
+					children[
+						DEF	PointyTop Transform{
+							scale 2.5 2 2.5
+							children [
+								Shape{
+									appearance	Appearance {
+										material Material {
+											diffuseColor 0.03, 0.18, 0.33
+										}
+									}
+									geometry Extrusion {
+										beginCap TRUE
+										endCap TRUE
+										creaseAngle 0.785
+										crossSection [
+										# Circle
+										 1.00   0.00,   0.92 -0.38,
+										 0.71  -0.71,   0.38 -0.92,
+										 0.00  -1.00,  -0.38 -0.92,
+										-0.71  -0.71,  -0.92 -0.38,
+										-1.00   0.00,  -0.92  0.38,
+										-0.71   0.71,  -0.38  0.92,
+										 0.00   1.00,   0.38  0.92,
+										 0.71   0.71,   0.92  0.38,
+										 1.00   0.00
+										]
+										spine[
+										#Square
+											0.0 0.0 0.0, 0.0 1.0 0.0
+										]
+										scale [1.0 1.0, 0.01 0.01]
+									}
+								}
+							]
+						},
+						DEF	BaseOfTop Transform	{
+							scale 1 .25 1
+							translation	0 -.15 0
+							children [
+					
+							Shape{
+								##	beginCap FALSE 
+								appearance	Appearance {
+									material Material {
+										diffuseColor 0.03, 0.18, 0.33  
+									}
+								}
+								geometry Extrusion {
+									beginCap TRUE
+									endCap TRUE
+									creaseAngle 0.785
+									crossSection [
+										# Circle
+										 1.00   0.00,   0.92 -0.38,
+										 0.71  -0.71,   0.38 -0.92,
+										 0.00  -1.00,  -0.38 -0.92,
+										-0.71  -0.71,  -0.92 -0.38,
+										-1.00   0.00,  -0.92  0.38,
+										-0.71   0.71,  -0.38  0.92,
+										 0.00   1.00,   0.38  0.92,
+										 0.71   0.71,   0.92  0.38,
+										 1.00   0.00
+									]
+									spine [
+									# Circle
+										 2.00 0.0 0.00, 1.85 0.0 0.77,
+										 1.41 0.0 1.41, 0.77 0.0 1.85,
+										 0.00 0.0 2.00, -0.77 0.0 1.85,
+										-1.41 0.0 1.41, -1.85 0.0 0.77,
+										-2.00 0.0 0.00, -1.85 0.0 -0.77,
+										-1.41 0.0 -1.41, -0.77 0.0 -1.85,
+										 0.00 0.0 -2.00, 0.77 0.0 -1.85,
+										 1.41 0.0 -1.41, 1.85 0.0 -0.77,
+										 2.00 0.0 0.00,
+									]
+									scale [1.0 1.0, 0.01 0.01]
+									}
+								}
+							]
+						}
+					]
+				}
+				DEF	LightbulbGlass Transform {
+					children[
+					 	Shape{
+							appearance	Appearance {
+								material Material {
+									#diffuseColor 0.18, 0.28, 0.23
+									diffuseColor 0.65, 0.86, 0.99
+									transparency 0.5
+								}
+							}
+							geometry Cylinder {
+								radius	.24
+								height	1
+							}
+						},
+					]
+				},
+				DEF Lightbulb Transform {
+					translation	0 0 0
+
+					children [
+						DEF LightbulbSpotlight SpotLight{
+						  on TRUE
+						  location 0 0 0
+						  radius 100
+						  intensity	5.0
+						  ambientIntensity 0
+						  color	0.89 0.44 0.1
+						  direction	5 1 5
+						  beamWidth	2.570796
+						  cutOffAngle 0.685398
+						  attenuation 1 0 0
+						},
+			   			Shape{
+							appearance	Appearance {
+								material Material {
+									#diffuseColor 0.18, 0.28, 0.23
+									diffuseColor 0.01 0.66 0.62
+								}
+							}
+							geometry Cylinder {
+								radius	.20
+								height	1
+							}
+						},
+
+						DEF	BulbLight DirectionalLight {
+							direction -15 2 -15
+							intensity 10
+							color 	0.89 0.81 0.34  # Golden Yellow
+							on TRUE
+							#ambientIntensity	3
+						},
+						DEF rotator OrientationInterpolator { # this will rotate the light source
+							key[0.0 0.5 1.0]
+							keyValue[
+								0 0 0 0.0, 0 1 0 3.14, 0 1 0 6.28
+							]
+						},
+
+						DEF	BulbDiffuseColor ColorInterpolator {
+							key[0.0 0.25 0.5 1.0]
+							keyValue [
+					            0.89 0.81 0.34, 1.0 0.25 0.0
+								1.0 0.25 0.0, 0.89 0.81 0.34
+							]
+						},
+						DEF timer TimeSensor { # to have time-changed events
+							cycleInterval 2.0
+	    					loop TRUE
+						}
+						DEF	colorTimer TimeSensor {
+							cycleInterval 4.0
+							loop TRUE
+						}
+					]
+				}
+
+			]
+		}
+		
+	]
+}
+ROUTE timer.fraction_changed TO rotator.set_fraction
+ROUTE rotator.value_changed TO Lightbulb.set_rotation
+ROUTE colorTimer.fraction_changed TO BulbDiffuseColor.set_fraction
+ROUTE BulbDiffuseColor.value_changed TO	LightbulbSpotlight.set_color
