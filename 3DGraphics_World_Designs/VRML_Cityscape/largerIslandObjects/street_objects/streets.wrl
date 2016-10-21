@@ -1,0 +1,28 @@
+#VRML V2.0 utf8
+# Filename: streets.wrl
+# Description: A box transformed several times to make a network of roads
+# Author: Edmary Rosado-Vega
+Group{
+	children [
+		Transform { # street 
+			scale 1 .5 1 
+			translation  0  0  0
+			children 
+				DEF street Shape {
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture { url "./objectTextures/road_texture.png"}			
+					}
+					geometry Box { size 20 0.1 0.7 }
+				}
+		}
+
+	# Street Reuse
+		Transform {	translation  0 0 0 rotation 0 1 0 1.57 children  USE	street}
+		Transform {	translation  5 0 9.67 scale 1.45 1 1 children  USE	street}
+		Transform {	translation  5 0 -9.67 scale 1.45 1 1 children  USE	street}
+		Transform { translation  9.71 0 0 rotation 0 1 0 1.57 children USE	street}
+		Transform { translation  19.42 0 0 rotation 0 1 0 1.57 children USE	street}
+		Transform { translation  -9.71 0 0 rotation 0 1 0 1.57 children USE	street}
+	]
+}

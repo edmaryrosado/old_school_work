@@ -1,0 +1,32 @@
+#VRML V2.0 utf8
+## Filename: goal_posts.wrl
+## Description: Goal posts much like the ones in the movie's game of quidditch
+## Author: Edmary Rosado-Vega
+
+Group{
+	children[
+		DEF GoalPost Transform{
+			children[
+				Transform{
+					children[
+						Shape{
+							appearance	Appearance {
+								texture	ImageTexture {
+									url ["./objectTextures/dark_bronze_texture.jpg"]
+								}
+							}
+							geometry Cylinder{
+								radius .15
+								height 5
+							}
+						}
+					]
+				}
+				Transform {translation 0 3.25 0 scale .25 .25 .25 children Inline {url "./hoop.wrl"}}
+			]
+		}
+		
+		Transform {translation -2 -1.5 0 children USE GoalPost},
+		Transform {translation 2 -1.5 0 children USE GoalPost},
+	]
+}

@@ -1,0 +1,33 @@
+#VRML V2.0 utf8
+# Filename:
+#
+#
+Group{
+	children [
+		DEF Building1 Transform {
+			scale .25 1 .25
+			translation	5 .40 5
+			children [ Inline {url "./cylindrical_building.wrl"}]
+		}
+
+		DEF Building2 Transform {
+			scale .25 1 .25
+			translation	6 .40 6
+			children [ Inline {url "./rectangular_building.wrl"}]
+		}
+
+		DEF Building3 Transform {
+			scale .5 1 .5
+			translation	3.5 .40 8
+			children [ Inline {url "./gray_rectangular_building.wrl"}]
+		}
+
+		DEF Building4 Transform {
+			children [ Inline {url "./"}]
+		}
+
+		DEF Building5 Transform {
+			children [ Inline {url "./"}]
+		}
+	]
+}

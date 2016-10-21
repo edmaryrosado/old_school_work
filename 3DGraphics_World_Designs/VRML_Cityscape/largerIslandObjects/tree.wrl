@@ -1,0 +1,21 @@
+#VRML V2.0 utf8
+# Filename: tree.wrl
+# Description: A cypress pine tree
+# Author: Edmary Rosado-Vega
+Group{
+	children[
+		DEF treeTrunk Transform{
+		
+		},
+		
+		DEF treeBranch Transform{
+		
+		},
+		# Reuse of treeBranch
+		Transform{children USE treeBranch},
+		
+		DEF treeTop Transform{
+		
+		}
+	]
+}

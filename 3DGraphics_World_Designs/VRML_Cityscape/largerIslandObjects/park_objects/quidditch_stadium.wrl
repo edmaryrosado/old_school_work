@@ -1,0 +1,130 @@
+#VRML V2.0 utf8
+# Filename: quidditch_stadium.wrl
+# Description: A quidditch stadium...because normal sports are boring...
+# Hogwarts crest texture courtesy of Vault of Daedalus
+# Author: Edmary Rosado-Vega
+Group{
+	children[
+		## Stadium Sounds
+		Sound {
+			source AudioClip {
+			url "./objectSounds/Large_Stadium.wav"
+			startTime	1.0
+			stopTime 0.0
+			loop TRUE
+			}
+			intensity 0.5
+			minFront 5.0
+			minBack 5.0
+			maxFront 35.0
+			maxBack 35.0
+		},
+
+		DEF	StadiumBody Transform{
+			translation	0 -5 0 
+			scale 1.25 2 1
+			children [
+				Shape{
+					appearance	Appearance {
+						texture	ImageTexture {
+							
+							url ["./objectTextures/hogwarts_crest_grunge.jpg"]
+						}
+					}
+					geometry Extrusion {
+						beginCap FALSE
+						endCap FALSE
+						solid FALSE
+						creaseAngle 0.785
+						crossSection [
+							 1.00   0.00,   0.92 -0.38,
+							 0.71  -0.71,   0.38 -0.92,
+							 0.00  -1.00,  -0.38 -0.92,
+							-0.71  -0.71,  -0.92 -0.38,
+							-1.00   0.00,  -0.92  0.38,
+							-0.71   0.71,  -0.38  0.92,
+							 0.00   1.00,   0.38  0.92,
+							 0.71   0.71,   0.92  0.38,
+							 1.00   0.00
+						]
+						spine [0.0 -1.0 0.0, 0.0 1.0 0.0]
+						scale [ 6.25000000 6.25000000, 8.00000 8.00000]
+					}
+				},
+				
+				#
+				# Stadium Stairs
+				#
+				DEF	Stairs Transform {
+					translation 5.90 -.55 0
+					scale .15 .15 .15
+					children [
+						Inline	{url "./stair_set.wrl"}
+					]
+				},
+				Transform {rotation	0 1 0 3.14 children	USE	Stairs },
+				Transform {rotation	0 1 0 1.57 children	USE	Stairs },
+				Transform {rotation	0 -1 0 1.57 children	USE	Stairs },
+				Transform {rotation	0 1 0 .785 children	USE	Stairs },
+				Transform {rotation	0 -1 0 .785 children	USE	Stairs },
+				Transform {rotation	0 1 0 2.355 children	USE	Stairs },
+				Transform {rotation	0 -1 0 2.355 children	USE	Stairs },
+				
+				#
+				# Goal Posts
+				#
+				
+				DEF GoalPosts Transform{
+					scale .25 .25 .25
+					rotation 0 1 0 1.57
+					translation 4.30 -1 0
+					children[Inline{url "./goal_posts.wrl"}]
+				}
+				Transform{translation -8.60 0 0 children USE GoalPosts}
+				
+				#
+				# Ravenclaw Side of Stadium
+				#
+				DEF	BlueBleachers Transform	{
+					translation 5.90 -.55 -2
+					scale .15 .15 .25
+					children [
+					#	Inline	{url "./blue_bleacher_set.wrl"}
+					]
+				}
+				#
+				# Hufflepuff Side of Stadium
+				#
+				DEF	YellowBleachers Transform	{
+					scale .15 .15 .15
+					children [
+					#	Inline	{url "./yellow_bleacher_set.wrl"}
+					]
+				}
+				#
+				# Gryffindor Side of Stadium
+				#
+				DEF	RedBleachers Transform	{
+					rotation 0 1 0 1.57
+					translation -3.90 -.55 -2
+					scale .15 .15 .15
+					children [
+					#	Inline	{url "./red_bleacher_set.wrl"}
+					]
+				}
+				#
+				# Slytherin Side of Stadium
+				#
+				DEF	GreenBleachers Transform	{
+					rotation 0 1 0 .785
+					translation 5.90 -.55 2
+					scale .15 .15 .15
+					children [
+					#	Inline	{url "./green_bleacher_set.wrl"}
+					]
+				}
+
+			]
+		},	
+	]
+}

@@ -1,0 +1,193 @@
+#VRML V2.0 utf8
+# Filename: city.wrl
+# Description: A city with a down-town look with a park right next to it. 
+# All on an island
+# Author: Edmary Rosado-Vega
+Group{
+	children[
+#
+# City Foundation
+#		
+
+	 
+		DEF CityFoundation Transform{
+			scale 2 2 2
+			children[
+				Shape{
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture { url "./objectTextures/concrete.jpg"}			
+					}
+					geometry Box { size 20 0.5 20 }					
+				}
+			]
+		},
+#
+# Park Foundation
+#
+		DEF ParkFoundation Transform{
+			translation 30 0 0
+			scale 2 2 2
+			children[
+				Shape{
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture { url "./objectTextures/grass.jpg"}			
+					}
+					geometry Box { size 10 0.5 20 }					
+				}
+			]
+		},
+
+#
+# Buildings for first block
+#		
+		DEF Buildings1 Transform{
+			#
+			# Placing the cylindrical building
+			#
+			scale 4 4 4
+			translation -8.5 -.55 -16.5
+			children[
+				Inline {url	"./building_group_1.wrl"}
+			]
+		},
+#
+# Buildings for second block
+#		
+		DEF Buildings2 Transform{
+			#
+			# Placing the rectangular building
+			#
+			scale 4 4 4
+			translation	8.5 -.55 16
+			rotation 0 1 0 3.14
+			children[
+				Inline {url	"./building_group_1.wrl"}			
+			]		
+		},
+#
+# Buildings for third block
+#		
+		DEF Buildings3 Transform{
+			scale 4 2 4
+			translation	8.5 -.25 32
+			rotation 0 1 0 3.14
+			children[
+				Inline {url	"./school_group.wrl"}		
+			]		
+		},
+#
+# Buildings for fourth block
+#		
+		DEF Buildings4 Transform{
+			scale 1.75 1.25 1.75
+			rotation 0 1 0 3.14
+			translation 22.5 .15 2.65
+			children[
+				Inline {url "./hospital_group.wrl"}
+			]		
+		},
+
+		#
+		# Street Lights Transform
+		#
+		DEF	StreetLights Transform {
+			scale 2 2 2
+			children [
+				DEF	StreetLight Transform {
+					scale .25 .25 .25
+					translation	-.5 .55 .5
+					children Inline {url "./street_objects/street_lamp.wrl"}
+				}
+				#Transform {translation -1.00 0 0.00 children USE StreetLight }
+				Transform {translation -2.00 0 0.00 children USE StreetLight }
+				#Transform {translation -3.00 0 0.00 children USE StreetLight }
+				Transform {translation -4.00 0 0.00 children USE StreetLight }
+				#Transform {translation -5.00 0 0.00 children USE StreetLight }
+				Transform {translation -6.00 0 0.00 children USE StreetLight }
+				#Transform {translation -7.00 0 0.00 children USE StreetLight }
+				Transform {translation -8.00 0 0.00 children USE StreetLight }
+				Transform {translation -8.75 0 0.00 children USE StreetLight }
+
+				Transform {translation  0.00 0  .75 children USE StreetLight	}
+				#Transform {translation  0.00 0 2.00 children USE StreetLight	}
+				Transform {translation  0.00 0 3.00 children USE StreetLight	}
+				#Transform {translation  0.00 0 4.00 children USE StreetLight	}
+				Transform {translation  0.00 0 5.00 children USE StreetLight	}
+				#Transform {translation  0.00 0 6.00 children USE StreetLight	}
+				Transform {translation  0.00 0 7.00 children USE StreetLight	}
+				#Transform {translation  0.00 0 8.00 children USE StreetLight	}
+				Transform {translation  0.00 0 8.75 children USE StreetLight	}
+
+				Transform {translation -1.00 0 8.75 children USE StreetLight }
+				#Transform {translation -2.00 0 8.75 children USE StreetLight }
+				Transform {translation -3.00 0 8.75 children USE StreetLight }
+				#Transform {translation -4.00 0 8.75 children USE StreetLight }
+				Transform {translation -5.00 0 8.75 children USE StreetLight }
+				#Transform {translation -6.00 0 8.75 children USE StreetLight }
+				Transform {translation -7.00 0 8.75 children USE StreetLight }
+				Transform {translation -8.00 0 8.75 children USE StreetLight }
+
+				Transform {translation -8.75 0  .75 children USE StreetLight	}
+				#Transform {translation -8.75 0 2.00 children USE StreetLight	}
+				Transform {translation -8.75 0 3.00 children USE StreetLight	}
+				#Transform {translation -8.75 0 4.00 children USE StreetLight	}
+				Transform {translation -8.75 0 5.00 children USE StreetLight	}
+				#Transform {translation -8.75 0 6.00 children USE StreetLight	}
+				Transform {translation -8.75 0 7.00 children USE StreetLight	}
+				#Transform {translation -8.75 0 8.00 children USE StreetLight	}
+				Transform {translation -8.75 0 8.75 children USE StreetLight	}
+			]
+		},
+		Transform {translation  0.00 0 -19.35 children USE StreetLights }
+		Transform {translation 19.35 0   0.00 children USE StreetLights }
+		Transform {translation 19.35 0 -19.35 children USE StreetLights }
+
+
+		#
+		# Quidditch Stadium
+		#
+		DEF	QuidditchStadium Transform {
+			#scale .55 .55 .55
+			translation	30 7.70 -3.5
+			rotation 0 1 0 1.57
+			children [
+				Inline	{url "./park_objects/quidditch_stadium.wrl"}
+			]
+		}
+		
+		DEF Bench Transform{
+			scale .15 .15 .15
+			translation 4 .85 5
+			children[
+				Inline {url "./park_objects/bench.wrl"}
+			]
+		},
+		Transform{translation  2.5 0  0 rotation 0 1 0 1.57 children USE Bench},
+		Transform{translation -5.0 0  0 rotation 0 -1 0 1.57 children USE Bench},
+		Transform{translation  0.0 0 -3 rotation 0 1 0 1.57 children USE Bench}
+		Transform{translation  5.5 0 -2 rotation 0 1 0 1.57 children USE Bench}
+		Transform{translation  5.0 0 -2 rotation 0 1 0 1.57 children USE Bench}
+		Transform{translation  5.0 0 15.5 rotation 0 1 0 1.57 children USE Bench}
+		Transform{translation  5.5 0 19.5 rotation 0 1 0 1.57 children USE Bench}
+		Transform{translation  5.0 0 19.5 rotation 0 1 0 1.57 children USE Bench}
+
+		DEF	streetGroup Transform {
+			scale 2 2 2 
+			children [
+				Inline	{url "./street_group.wrl"}
+			]
+		}
+		#
+		# Single Trip timer
+		#
+		DEF singleTripTimer TimeSensor { # to have time-changed events
+			cycleInterval 4.0
+	    	loop FALSE
+		},
+
+
+	]
+
+}

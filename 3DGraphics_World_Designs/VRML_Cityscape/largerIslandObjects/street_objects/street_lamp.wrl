@@ -1,0 +1,93 @@
+#VRML V2.0 utf8
+# Filename: street_lamp.wrl
+# Description: A street lamp with an old feel to it.
+# Author: Edmary Rosado-Vega
+DEF	StreetLamp Transform {
+	children [
+		DEF	LampBase Transform {
+			children[
+				Shape {
+					appearance Appearance {
+						texture	ImageTexture {
+							url ["./objectTextures/dark_bronze_texture.jpg"]
+						}
+					}
+					geometry Cylinder {
+						height 2
+						radius .10
+					}
+				},
+
+				DEF Base Transform{
+					translation	0 -1 0
+					children [
+					 	Shape {
+							appearance	Appearance {
+								texture	ImageTexture {
+									url ["./objectTextures/dark_bronze_texture.jpg"]
+								}
+							}
+							geometry Cone {
+								height .25
+								bottomRadius	.25
+							}
+						},
+					]
+				}
+			]
+		},
+
+		DEF	LampTop Transform {
+			translation	0 1 0
+			#rotation 1 0 0 .785 #turn cone 45 degrees
+			children	[
+
+
+				DEF	LightFixture Transform {
+					scale .15 .18 .15
+				   translation	0 .15 0
+				   
+				   children	[
+					   Inline {url "./old_school_lantern.wrl"}
+				   ]
+				}
+				DEF	Lightbulb Transform	{
+					rotation 1 0 0 3.14
+					translation	0 .251 0
+					children [
+						Shape {
+							appearance Appearance {
+								material Material {
+								 diffuseColor 0.65, 0.86, 0.99
+								}
+							}
+							geometry Cone {
+							 height	.15
+							 bottomRadius .15
+							}
+						},
+						DEF	BulbLight DirectionalLight {
+							direction 1 1 1
+							intensity 5
+							color 	0.89 0.81 0.34  # Golden Yellow
+							on TRUE
+							#ambientIntensity	3
+						},
+						DEF LightbulbSpotlight SpotLight{
+							on TRUE
+							location 0 0 0
+							radius 5
+							intensity	4.0
+							ambientIntensity 0
+							color	0.89 0.44 0.1
+							direction	1 1 1
+							beamWidth	2.570796
+							cutOffAngle 0.685398
+							attenuation 1 0 0
+						},
+					]
+				}
+			]
+		}
+	]
+}

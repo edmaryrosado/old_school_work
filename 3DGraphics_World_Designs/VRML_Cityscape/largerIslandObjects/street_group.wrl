@@ -1,0 +1,441 @@
+#VRML V2.0 utf8
+## Filename: street_group.wrl
+## Description: Streets with cars and signs
+## Author: Edmary Rosado-Vega
+Group{
+	children [
+	 #
+	 # Streets
+	 #
+		DEF Streets Transform{
+			translation 0 0.25 0
+			children[
+				
+				#
+				# Across Hospital Viewpoint
+				#
+				Viewpoint {
+
+					position -5 .25 -5.5       # Middle of Buildings in Back
+					orientation 0 -1 0  1.57  # Looking in
+					jump TRUE
+					description "View: Hospital Campus"    
+				}
+				#
+				# School Viewpoint
+				#
+				Viewpoint {
+
+					position -6 .25 3       # Middle of School Campus
+					orientation 0 -1 0  1.57  # Looking out
+					jump TRUE
+					description "View: Park"    
+				}
+				Inline{url "./street_objects/streets.wrl"}
+				#
+				# Stadium Viewpoint
+				#
+				Viewpoint {
+
+					position 14 .25 5       # Middle of Park (next to Stadium)
+					orientation 0 -1 0  1.57  # Looking out
+					jump TRUE
+					description "View: Park"    
+				}
+				Inline{url "./street_objects/streets.wrl"}
+			]		
+		},
+
+	]
+}
+
+#================================================================================================
+#================================================================================================
+#================================================================================================
+#
+# Yellow Car and Yellow Car Path
+#
+Group {	# Car Path Transformations 
+	children [
+		DEF yellowCar Transform {	# yellow car
+
+			rotation 0 1 0 1.57 # rotate yellow car 90 degrees
+			children [
+				DEF car Transform {
+					scale .25 .25 .25
+					translation 0 .45 .25
+				    rotation 0 -1 0 1.57 
+					children Inline {url "./vehicles/old_yellow_car.wrl"}
+				} 
+
+
+			Viewpoint {
+				fieldOfView  1.3
+				position 0 .65 -.05       # Inside Car
+				orientation 0 0 0  1.57  # Looking out
+				jump TRUE
+				description "View: Yellow Car"    
+			}
+			
+		]
+		}
+	   	DEF yellowCar_touchsensor TouchSensor{} # used during development	
+
+		DEF yellowCar_path_timer TimeSensor { # setup time status event recording
+			cycleInterval 20.0 
+			enabled TRUE
+    		loop FALSE  # works when car is clicked
+    		loop TRUE  
+			startTime 0
+			#stopTime -7
+		}		
+		DEF yellowCar_position PositionInterpolator { # setup transitional positions
+    		key [ 
+    		0.00
+    		0.03
+    		0.05
+    		0.08
+
+			0.13
+    		0.15
+    		0.18
+    		0.20
+
+			0.23
+    		0.25
+    		0.28
+    		0.30
+
+			0.33
+    		0.35
+    		0.38
+    		0.40
+
+			0.43
+    		0.45
+    		0.48
+    		0.50
+
+			0.53
+    		0.55
+    		0.58
+    		0.60
+
+			0.63
+    		0.65
+    		0.68
+    		0.70
+
+			0.73
+    		0.75
+    		0.78
+    		0.80
+
+			0.83
+    		0.85
+    		0.88
+    		0.90
+
+			0.93
+    		0.95
+    		0.98
+			1.00
+    		0.00
+    		0.03
+    		0.05
+
+    		]
+			#			X		y		z
+    		keyValue [	
+				0.30  -0.05  9.0		# moving north
+				0.30  -0.05   2.0
+				0.30  -0.05  -5.0
+				0.30  -0.05  -8.0
+				0.30  -0.05  -9.0 	
+				0.30  -0.05  -9.0 	
+				0.30  -0.05  -9.0 	
+				0.30  -0.05  -9.8 	
+
+				-1.0  -0.05  -9.8	# moving west
+				-3.0  -0.05  -9.8
+				-6.0  -0.05  -9.8
+				-9.0  -0.05  -9.8
+				-9.7  -0.05  -9.8
+				-9.7  -0.05  -9.8
+				-9.7  -0.05  -9.8
+
+				-9.7  -0.05  -10.0	# moving south
+				-9.7  -0.05  -8.0
+				-9.7  -0.05  -5.0
+				-9.7  -0.05  -3.0
+				-9.7  -0.05   0.0
+				-9.7  -0.05   0.0
+				-9.7  -0.05   0.0
+
+				 -9.7  -0.05  0.0    # moving east
+				 -7.7  -0.05  0.0
+				 -5.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+				 -1.7  -0.05  0.0
+
+  			   -1.0   -0.05   0.0   # moving south
+			    -0.15   -0.05   0.0
+				-0.15   -0.05   2.0
+				-0.15   -0.05   5.0 	
+				-0.15   -0.05   7.0 	
+				-0.15   -0.05   8.0
+				-0.15   -0.05   9.0
+				-0.15   -0.05   9.5
+				-0.15   -0.05   9.5
+				-0.15   -0.05   9.5 	
+			]
+		}
+		DEF yellowCar_rotator-timer TimeSensor { # setup time status event recording
+			cycleInterval 20.0 
+			enabled TRUE
+    		loop TRUE
+			startTime 0
+			#stopTime 20
+		}
+		DEF yellowCar_rotator OrientationInterpolator { # rotate the car
+			key [ 
+			0.0  
+			0.1  
+			0.2 
+			0.3  
+			0.4  
+			0.5
+			0.6
+			0.7
+			0.8
+			0.9
+			1.0
+
+			] 			
+			keyValue [	
+
+				0 0 0 	1.57
+				0 0 0 	1.57
+				0 1 0 	1.57
+				0 1 0 	1.57
+				0 1 0 	3.14
+				0 1 0 	3.14
+				0 1 0 	4.71
+				0 1 0 	4.71
+				0 1 0 	4.71
+				0 1 0 	-3.14
+				0 1 0 	-3.14
+			]		
+		}
+	] # end of DEF yellowCar Transform 
+} # end of Car Path Transformations Group 
+#================================================================================================	
+
+ROUTE yellowCar_touchsensor.touchTime TO yellowCar_path_timer.startTime # starts the timer
+ROUTE yellowCar_path_timer.fraction_changed TO yellowCar_position.set_fraction	
+ROUTE yellowCar_position.value_changed TO yellowCar.set_translation  			
+ROUTE yellowCar_touchsensor.touchTime TO yellowCar_rotator-timer.startTime # starts the timer
+ROUTE yellowCar_rotator-timer.fraction_changed TO yellowCar_rotator.set_fraction	
+ROUTE yellowCar_rotator.value_changed TO yellowCar.set_rotation  
+
+#================================================================================================
+#================================================================================================
+#================================================================================================
+#
+# Red Car and Red Car Path 
+#
+Group {	# Red Car Path Transformations 
+	children [
+		DEF redCar Transform {	# yellow car
+
+			rotation 0 1 0 1.57 # rotate yellow car 90 degrees
+			children [
+				DEF red_Car Transform {
+					scale .25 .25 .25
+					translation 0 .45 .25
+				    rotation 0 -1 0 1.57 
+					children Inline {url "./vehicles/old_red_car.wrl"}
+				} 
+
+				Viewpoint {
+					fieldOfView  1.3
+					position 0 .65 -.05       # Inside Car
+					orientation 0 0 0  1.57  # Looking out
+					jump TRUE
+					description "View: Red Car"    
+				}
+
+			
+		]
+		}
+	   	DEF redCar_touchsensor TouchSensor{} # used during development	
+
+		DEF redCar_path_timer TimeSensor { # setup time status event recording
+			cycleInterval 20.0 
+			enabled TRUE
+    		loop FALSE  # works when car is clicked
+    		loop TRUE  
+			startTime 0
+			#stopTime -7
+		}		
+		DEF redCar_position PositionInterpolator { # setup transitional positions
+    		key [ 
+    		-0.03
+    		0.05
+    		0.08
+    		0.10
+
+			0.10
+    		0.13
+    		0.15
+    		0.18
+
+			0.20
+    		0.23
+    		0.25
+    		0.28
+
+			0.30
+    		0.33
+    		0.35
+    		0.38
+
+			0.40
+    		0.43
+    		0.45
+    		0.48
+
+			0.50
+    		0.53
+    		0.55
+    		0.58
+
+			0.60
+    		0.63
+    		0.65
+    		0.68
+
+			0.70
+    		0.73
+    		0.75
+    		0.78
+
+			0.80
+    		0.83
+    		0.85
+    		0.88
+
+			0.90
+    		0.93
+    		0.95
+			0.97
+    		0.98
+			0.99
+			1.00
+
+    		]
+			#			X		y		z
+    		keyValue [	
+				0.15  -0.05  9.0		# moving north
+				0.15  -0.05   2.0
+				0.15  -0.05  -5.0
+				0.15  -0.05  -8.0
+				0.15  -0.05  -9.0 	
+				0.15  -0.05  -9.0 	
+				0.15  -0.05  -9.0 	
+				0.15  -0.05  -9.8 	
+
+				1.0  -0.05  -9.8	# moving east
+				3.0  -0.05  -9.8
+				6.0  -0.05  -9.8
+				9.0  -0.05  -9.8
+				9.7  -0.05  -9.8
+				9.7  -0.05  -9.8
+				9.7  -0.05  -9.8
+
+				9.7  -0.05  -10.0	# moving south
+				9.7  -0.05  -8.0
+				9.7  -0.05  -5.0
+				9.7  -0.05  -3.0
+				9.7  -0.05   0.0
+				9.7  -0.05   0.0
+				9.7  -0.05   0.0
+
+				 9.0  -0.05  0.0    # moving east
+				 7.0  -0.05  0.0
+				 5.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+				 1.0  -0.05  0.0
+
+  			    1.0   -0.05   0.0   # moving north
+			    0.0   -0.05   0.0
+				0.0   -0.05   -2.0
+				0.0   -0.05   -5.0 	
+				0.0   -0.05   -7.0 	
+				0.0   -0.05   -8.0
+				0.0   -0.05   -9.0
+				0.0   -0.05   -9.5
+				0.0   -0.05   -9.5
+				0.0   -0.05   -9.5 	
+			]
+		}
+		DEF redCar_rotator-timer TimeSensor { # setup time status event recording
+			cycleInterval 20.0 
+			enabled TRUE
+    		loop TRUE
+			startTime 0
+			#stopTime 20
+		}
+		DEF redCar_rotator OrientationInterpolator { # rotate the car
+			key [ 
+			0.0  
+			0.1  
+			0.2 
+			0.3  
+			0.4  
+			0.5
+			0.6
+			0.7
+			0.8
+			0.9
+			1.0
+
+			] 			
+			keyValue [	
+
+				0 0 0 	1.57
+				0 0 0 	1.57
+				0 -1 0 	1.57
+				0 -1 0 	1.57
+				0 -1 0 	3.14
+				0 -1 0 	3.14
+				0 -1 0 	4.71
+				0 -1 0 	4.71
+				0 -1 0 	4.71
+				0 -1 0 	-3.14
+				0 -1 0 	-3.14
+			]		
+		}
+	] # end of DEF yellowCar Transform 
+} # end of Car Path Transformations Group 
+#------------------------------------------------------------------
+		
+
+ROUTE redCar_touchsensor.touchTime TO redCar_path_timer.startTime # starts the timer
+ROUTE redCar_path_timer.fraction_changed TO redCar_position.set_fraction	
+ROUTE redCar_position.value_changed TO redCar.set_translation  			
+ROUTE redCar_touchsensor.touchTime TO redCar_rotator-timer.startTime # starts the timer
+ROUTE redCar_rotator-timer.fraction_changed TO redCar_rotator.set_fraction
+ROUTE redCar_rotator.value_changed TO redCar.set_rotation

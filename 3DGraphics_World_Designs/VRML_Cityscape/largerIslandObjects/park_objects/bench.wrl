@@ -1,0 +1,64 @@
+#VRML V2.0 utf8
+# Filename: bench.wrl
+# Description: Park Bench
+# Author: Edmary Rosado-Vega
+Transform{
+	translation	-3 -1 0
+	children[
+		DEF	BenchSupport Transform {
+			children [
+				DEF Beam Transform {
+					children [
+						Shape {
+							appearance Appearance{
+								texture ImageTexture {
+                            		repeatS TRUE
+                            		repeatT TRUE
+                            		url "./objectTextures/dark_bronze_texture.jpg"
+                				}
+							}
+							geometry Box {
+								size .30 3 .30
+							}
+						}
+					]
+				},
+				Transform {translation 6 0 0 children USE Beam},
+				Transform {scale 1 2.00 1 rotation 0 0 1 1.57 translation 3 -.5 0.0 children USE Beam},
+				Transform {scale 1  .75 1 rotation 1 0 0 1.57 translation 0 -.5 .75 children USE Beam},
+				Transform {scale 1  .75 1 rotation 1 0 0 1.57 translation 6 -.5 .75 children USE Beam},
+				Transform {scale 1  .35 1 rotation 0 1 0 1.57 translation 0 -1 1.70 children USE Beam},
+				Transform {scale 1  .35 1 rotation 0 1 0 1.57 translation 6 -1 1.70 children USE Beam},
+			]
+		},
+
+		DEF	BenchSeat Transform	{
+			children [
+				DEF	SeatPlank Transform	{
+					translation	3 -.5 .45
+					children [
+						Shape {
+							appearance Appearance{
+								texture ImageTexture {
+                            		repeatS TRUE
+                            		repeatT TRUE
+                            		url "./objectTextures/palm_tree_bark_texture.jpg"
+                				}
+							}
+							geometry Box {
+								size 6 .15 .5
+							}
+						}
+					]
+				},
+				Transform {translation 0 0 0.52 children	USE	SeatPlank },
+				Transform {translation 0 0 1.02 children	USE	SeatPlank },
+				
+				## Back Part of Bench
+				Transform {rotation 1 0 0 1.57 translation 0 .52  .54 children	USE	SeatPlank },
+				Transform {rotation 1 0 0 1.57 translation 0 1.02 .54 children	USE	SeatPlank },
+				Transform {rotation 1 0 0 1.57 translation 0 1.54 .54 children	USE	SeatPlank },
+			]
+		}
+	]
+}

@@ -1,0 +1,61 @@
+#VRML V2.0 utf8
+
+Group{
+	children [
+		DEF Headlamp Transform {
+			rotation 1 0 0	1.57
+			children [
+				Shape {
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0 0 0
+						}
+					}
+
+					geometry Cylinder {
+					 radius	.15
+					 height	.15
+					 bottom FALSE
+					}
+				},
+				Transform {
+					children [
+						Shape {
+							appearance	Appearance {
+								material Material {
+									diffuseColor 0.65, 0.86, 0.99
+								}
+							}
+
+							geometry Cone {
+								bottomRadius	.15
+								height	.15
+							}
+						}
+						DEF	BulbLight DirectionalLight {
+							direction 0 -1 -1
+							intensity 5
+							color 	0.89 0.81 0.34  # Golden Yellow
+							on TRUE
+							#ambientIntensity	3
+						},
+						DEF LightbulbSpotlight SpotLight{
+							on TRUE
+							location 0 0 0
+							radius 10
+							intensity	2.0
+							ambientIntensity 0
+							color	0.89 0.44 0.1
+							direction	0 -1 -1
+							beamWidth	2.570796
+							cutOffAngle 0.685398
+							attenuation 1 0 0
+						},
+					]
+				}
+			]
+		},
+		Transform {translation 1.32 0 0 children	USE	Headlamp }
+
+	]
+}

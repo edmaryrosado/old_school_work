@@ -1,0 +1,99 @@
+#VRML V2.0 utf8
+# Filename: stair_set.wrl
+# Description: Two flights of stairs with a base break in between
+# Author: Edmary Rosado-Vega
+DEF staircase Transform {
+  scale .5 .5 .5
+  children [
+
+    DEF steps Group {
+      children [
+        DEF stair Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.54        0.21       0.06
+            } # end material
+          } # end appearance
+          geometry Box {
+            size 1 1 4
+          } # end Box
+        } #end stair
+    
+        Transform {
+          translation 1 1 0
+          children [
+            USE stair
+          ] # end children
+        } # end transform
+    
+        Transform {
+          translation 2 2 0
+          children [
+            USE stair
+          ] # end children
+        } # end transform
+    
+        Transform {
+          translation 3 3 0
+          children [
+            USE stair
+          ] # end children
+        } # end transform
+    
+        Transform {
+          translation 4 4 0
+          children [
+            USE stair
+          ] # end children
+        } # end transform
+    
+      ] # end children
+    } # end steps_set
+    
+    Transform{
+      translation -5 -5 0
+      children [
+        USE steps
+      ] # end children
+    } # end transform
+    
+    Transform {
+      translation 6.5 5 0
+      children [
+        DEF landing Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.54        0.21       0.06
+            } # end material
+          } # end appearance
+          geometry Box {
+            size 4 1 4
+          } # end Box
+        } # end landing
+      ] # end children
+    } # end transform
+    
+    Transform {
+      translation 7.5 5 0
+      children [
+        USE steps
+      ] # end children
+    } # end transform
+    
+    Transform {
+      translation 12.5 10 0
+      children [
+        USE steps
+      ] # end children
+    } # end transform
+    
+    Transform {
+      translation 19 15 0
+      children [
+        USE landing
+      ] # end children
+    } # end transform
+  
+  ] #end staircase children
+} # end stair_set
+

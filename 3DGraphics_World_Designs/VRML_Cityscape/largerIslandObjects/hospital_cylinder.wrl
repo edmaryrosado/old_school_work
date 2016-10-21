@@ -1,0 +1,50 @@
+#VRML V2.0 utf8
+# Filename: cylindrical_building.wrl
+# Description: A cylindrical building
+# Author: Edmary Rosado-Vega
+Group{
+	children[
+		DEF	buildingFoundation Shape {
+			appearance Appearance {
+				material Material {}
+				texture	ImageTexture { url "./objectTextures/white_concrete.jpg"}			
+			}
+			geometry Cylinder {
+				radius 2
+				height .25
+			}
+		},
+		DEF	windows Transform {
+			translation	0 .25 0
+			children [
+				Shape {
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0.65, 0.86, 0.99
+							transparency 0.5
+						}
+					}
+					geometry Cylinder {
+						radius	2
+						height	.30
+						bottom FALSE
+                		side TRUE
+    					top FALSE
+					}
+				}
+			]
+		},
+		DEF	floorWithBottom Transform	{
+			children [
+				Transform {translation 0 0.52 0 children	USE	buildingFoundation}
+				Transform {translation 0 0.53 0 children	USE	windows}
+				#Transform {translation 0 1.05 0 children	USE	buildingFoundation}
+			]
+		},
+		Transform {translation 0 0.53 0 children USE floorWithBottom }
+		Transform {translation 0 1.06 0 children USE floorWithBottom }
+		Transform {translation 0 1.58 0 children USE floorWithBottom }
+		Transform {translation 0 2.62 0 children USE buildingFoundation	}
+
+	]
+}

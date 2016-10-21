@@ -1,0 +1,30 @@
+#VRML V2.0 utf8
+# Filename: ribbon.wrl
+# Description: A ribbon from the VRML 2.0 Sourcebook
+# Author: VRML Book, I just modified values
+Shape {
+	appearance	Appearance {
+		material Material {
+			diffuseColor 0.9, 0.91, 0.98
+		}
+	}
+
+	geometry ElevationGrid {
+		xDimension	2
+		zDimension	20
+		xSpacing 1.0
+		zSpacing 4.0
+		solid FALSE
+		creaseAngle 0.785
+		height	[
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59,
+			0.00, 0.59, 0.95, 0.95, 0.59
+		]
+	}
+}

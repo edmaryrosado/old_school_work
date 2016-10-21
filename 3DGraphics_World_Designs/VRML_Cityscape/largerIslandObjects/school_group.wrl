@@ -1,0 +1,32 @@
+#VRML V2.0 utf8
+# Filename: school_group.wrl
+# Description:
+# Author: Edmary Rosado-Vega
+Group{
+	children [
+		DEF Building1 Transform {
+			scale .25 1 .25
+			rotation 0 1 0 .785
+			translation	5.75 .40 6.25
+			children [ Inline {url "./school.wrl"}]
+		}
+
+		DEF Building2 Transform {
+			scale .25 1 .25
+			translation	5.52 .40 6
+			#children [ Inline {url "./school.wrl"}]
+		}
+		DEF Building3 Transform {
+			scale .25 1 .25
+			rotation 0 -1 0 .785
+			translation	5.75 .40 4.25
+			children [ Inline {url "./school.wrl"}]
+		}
+
+		DEF Building4 Transform {
+			scale .5 1 .5
+			translation	3.5 .40 4.75
+			children [ Inline {url "./school.wrl"}]
+		}
+	]
+}

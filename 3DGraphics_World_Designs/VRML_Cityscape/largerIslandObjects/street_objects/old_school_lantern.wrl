@@ -1,0 +1,133 @@
+#VRML V2.0 utf8
+## Filename:    old_school_lantern.wrl
+## Author:      Edmary Rosado-Vega
+## Description: An old school lantern with a radiant yellow light
+Group{
+	children[
+		DEF FixtureTop Transform {
+			translation	0 1.60 0
+			children [
+			 Shape{
+		 		appearance Appearance	{
+					texture	ImageTexture {
+						url ["./objectTextures/dark_bronze_texture.jpg"]
+					}
+				}
+				geometry	Cone{
+					height		 	1.25
+					bottomRadius	2.00
+				}
+			}
+		 ]
+		},
+
+		DEF	FixtureGlass Shape{
+			appearance	Appearance {
+				material Material {
+					diffuseColor 0.65, 0.86, 0.99
+					transparency 0.5
+				}
+			}
+			geometry Cylinder {
+				radius	1.75
+				height	2.00
+				bottom FALSE
+                side TRUE
+    			top FALSE
+			}
+		},
+
+		DEF	FixtureBottom Transform{
+			translation	0 -1 0
+			children[
+				Shape{
+					appearance	Appearance {
+						texture	ImageTexture {
+							url ["./objectTextures/dark_bronze_texture.jpg"]
+						}
+					}
+					geometry Cylinder {
+						radius  2
+						height .15
+					}
+				}
+			]
+		},
+		## Metallic Rings for Lighthouse top
+				DEF	Ring Transform {
+					translation	0 -.62 0
+
+					children [
+			   			Shape{
+							appearance	Appearance {
+								texture	ImageTexture {
+									url ["./objectTextures/dark_bronze_texture.jpg"]
+								}
+							}
+							geometry Cylinder {
+								radius	1.77
+								height	.1
+								bottom FALSE
+                				side TRUE
+    							top FALSE
+							}
+						},
+
+					]
+				},
+				Transform
+				{
+					translation 0 .62 0
+					children
+						[ USE Ring ] ## Another Ring
+				},
+				Transform
+				{
+					translation 0 1.32 0
+					children
+						[ USE Ring ] ## Another Ring
+				},
+				## Lighthouse Top Support Pillars
+				DEF	SupportPillar Transform{
+					translation	0 0 -1.75
+
+					children [
+			   			Shape{
+							appearance	Appearance {
+								texture	ImageTexture {
+									url ["./objectTextures/dark_bronze_texture.jpg"]
+								}
+							}
+							geometry Cylinder {
+								radius	0.10
+								height	2.00
+								bottom TRUE
+                				side TRUE
+    							top TRUE
+							}
+						},
+
+					]
+				},
+				Transform
+				{
+					translation 0 0 3.5
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+				Transform
+				{
+					translation -1.75 0 1.75
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+				Transform
+				{
+					translation 1.75 0 1.75
+					children
+						[ USE SupportPillar ] ## Another Support Pillar
+				},
+
+	]
+
+}

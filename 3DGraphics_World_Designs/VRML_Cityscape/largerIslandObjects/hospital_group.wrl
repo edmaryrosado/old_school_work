@@ -1,0 +1,20 @@
+#VRML V2.0 utf8
+# Filename: hospital_group.wrl
+# Description: A hospital building group with white concrete walls (made up of two shapes)
+# Author: Edmary Rosado-Vega
+Group{
+	children [
+		DEF Building1 Transform {
+			#scale .25 1 .25
+			#rotation 0 1 0 .785
+			translation	5.75 .40 6.25
+			children [ Inline {url "./hospital_rectangle.wrl"}]
+		}
+
+		DEF Building2 Transform {
+			#scale .25 1 .25
+			translation	8.25 .40 6.25
+			children [ Inline {url "./hospital_cylinder.wrl"}]
+		}
+	]
+}
