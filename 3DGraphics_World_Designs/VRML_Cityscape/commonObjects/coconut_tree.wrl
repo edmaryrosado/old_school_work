@@ -1,0 +1,94 @@
+#VRML V2.0 utf8
+# Filename: coconut_tree.wrl
+# Description: A coconut tree derived from an extrusion and several cones
+# Author: Edmary Rosado-Vega
+# Summer 2014
+Group{
+	children[
+		DEF CoconutTreeTrunk Shape{
+			appearance Appearance{
+				texture ImageTexture {
+                             repeatS TRUE
+                             repeatT TRUE
+                             url "./objectTextures/palm_tree_bark_texture.jpg"
+                }
+			}
+			geometry Extrusion {
+				beginCap    TRUE  
+				endCap      TRUE 
+				convex      TRUE
+				creaseAngle 1.98  
+				solid       TRUE
+				crossSection [
+					 1.00   0.00,   0.92 -0.38,
+					 0.71  -0.71,   0.38 -0.92,
+					 0.00  -1.00,  -0.38 -0.92,
+				    -0.71  -0.71,  -0.92 -0.38,
+				    -1.00   0.00,  -0.92  0.38,
+				    -0.71   0.71,  -0.38  0.92,
+					 0.00   1.00,   0.38  0.92,
+					 0.71   0.71,   0.92  0.38,
+					 1.00   0.00
+				]
+				spine [0.0 1.0 0.0, 0.0 5.0 0.0]
+				scale [ .25 .25, .0525 .0525]
+			} 
+		},
+		DEF CoconutTreeLeaf Transform{
+			translation -.7 5.2 0
+			rotation 0 0 1 1.25
+			scale 1.5 1.5 1.5
+			children[
+				DEF leafBlade Shape{
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.0 1.0 0.2
+						}
+					}
+
+					geometry Cone{
+						bottomRadius .02  # bottom radius in units
+						height       1    # height in units
+						side         TRUE # TRUE or FALSE determines the existence of the sides
+						bottom       TRUE # TRUE or FALSE determines the existence of the bottom-cap
+					
+					}
+				},
+				# Bottom Side of Blade
+				DEF blades Group{
+				children[
+				Transform {translation 0 -.10 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0    0 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .05 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .10 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .15 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .20 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .25 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .30 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .35 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .40 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .45 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .50 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				Transform {translation 0  .55 .10 scale .5 .25 .5 rotation 1 0 0 .75 children USE leafBlade },
+				]
+				}
+				# Top Side of Blade
+				Transform{ rotation 0 1 0 1.75 children USE blades}
+			]
+		},
+
+		Transform { translation 0 0 0 rotation 0 1 0 0.75 children USE CoconutTreeLeaf },
+		Transform { translation 0 0 0 rotation 0 1 0 1.75 children USE CoconutTreeLeaf },
+		Transform { translation 0 0 0 rotation 0 1 0 2.75 children USE CoconutTreeLeaf },
+		Transform { translation 0 0 0 rotation 0 1 0 3.75 children USE CoconutTreeLeaf },
+		Transform { translation 0 0 0 rotation 0 1 0 4.75 children USE CoconutTreeLeaf },
+		
+		DEF Coconut Transform{
+			scale .15 .15 .15
+			translation 0 5.13 0
+			children[
+				Inline {url "./coconut.wrl"}
+			]
+		}
+	]
+}

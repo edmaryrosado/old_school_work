@@ -1,0 +1,75 @@
+#VRML V2.0 utf8
+# Filename: pier.wrl
+# Description: A pier with palm tree wood texture
+# Author: Edmary Rosado-Vega
+# Summer 2014
+Group{
+	children[
+		## Column Pair
+		DEF	PierColumnPair Group{
+			children[
+				# Singular Support Column
+				DEF PierColumn Shape{
+					appearance Appearance{
+						texture ImageTexture {
+                             repeatS TRUE
+                             repeatT TRUE
+                             url "./objectTextures/palm_tree_bark_texture.jpg" # reuse palm tree bark pattern jpg
+                		}
+					}
+					geometry Cylinder {
+					 height	3
+					 radius	.15
+					}
+				}
+				Transform {translation -3 0 0 children USE PierColumn},
+			]
+		},
+		Transform {translation 0 0  1 children USE PierColumnPair},
+		Transform {translation 0 0  0 children USE PierColumnPair},
+		Transform {translation 0 0 -1 children USE PierColumnPair},
+		Transform {translation 0 0 -2 children USE PierColumnPair},
+		Transform {translation 0 0 -3 children USE PierColumnPair},
+		Transform {translation 0 0 -4 children USE PierColumnPair},
+		Transform {translation 0 0 -5 children USE PierColumnPair},
+		
+		DEF PierBoardWalk Group{
+			
+			children[
+				DEF	PierBoard Transform	{
+					translation	-1.5 1 0
+					children [
+
+						Shape {
+					  
+							appearance Appearance{
+								texture ImageTexture {
+                            		repeatS TRUE
+                            		repeatT TRUE
+                            		url "./objectTextures/palm_tree_bark_texture.jpg" # reuse palm tree bark pattern jpg
+                				}
+							}
+
+							geometry Box {
+						
+								size 4 .15 .5
+							}		
+						}
+					]
+				},
+				Transform {translation 0 0  1.03 children USE PierBoard},
+				Transform {translation 0 0   .52 children USE PierBoard},
+				Transform {translation 0 0  -.52 children USE PierBoard},
+				Transform {translation 0 0 -1.03 children USE PierBoard},
+				Transform {translation 0 0 -1.52 children USE PierBoard},
+				Transform {translation 0 0 -2.03 children USE PierBoard},
+				Transform {translation 0 0 -2.52 children USE PierBoard},
+				Transform {translation 0 0 -3.03 children USE PierBoard},
+				Transform {translation 0 0 -3.52 children USE PierBoard},
+				Transform {translation 0 0 -4.03 children USE PierBoard},
+				Transform {translation 0 0 -4.52 children USE PierBoard},
+				Transform {translation 0 0 -5.03 children USE PierBoard},
+			]
+		},
+	]
+}

@@ -1,0 +1,30 @@
+#VRML V2.0 utf8
+# Filename: shore_rocks.wrl
+# Description: Rocks derived from elevation grid with mountain texture.
+# Author: Edmary Rosado-Vega
+# Summer 2014
+Shape {
+    appearance Appearance {
+        material Material { }
+		texture	ImageTexture { url "./objectTextures/mountain_texture.jpg"}
+    }
+    geometry ElevationGrid {
+        xDimension  9
+        zDimension  9
+        xSpacing    1.0
+        zSpacing    1.0
+        solid       TRUE
+        creaseAngle 0.785
+        height [
+            0.0, 0.0, 1.5, 2.0, 0.5, 0.0, 0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0, 0.0, 3.5, 0.5, 0.0, 0.0, 0.0,
+            0.0, 2.0, 1.5, 0.5, 3.0, 1.0, 0.5, 0.0, 1.0,
+            0.0, 2.0, 1.5, 3.0, 2.5, 2.5, 1.0, 1.5, 1.5,
+            2.0, 2.5, 3.0, 3.5, 3.5, 2.5, 3.0, 1.0, 0.0,
+            1.5, 2.0, 2.0, 3.5, 2.5, 1.0, 2.0, 0.5, 0.0,
+            1.0, 0.0, 1.5, 1.5, 1.0, 3.0, 2.0, 2.5, 1.0,
+            0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 3.0, 2.5, 1.5,
+            0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
+        ]
+    }
+}

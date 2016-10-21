@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+# Filename: cityscapeWorld.wrl
+# Description: Cityscape world with a small island, large island and ocean.
+# Smaller objects are contained within their respective islands.
+# Author: Edmary Rosado-Vega
+
+#
+#  World Info
+#
+WorldInfo {
+        title "Cityscape World"
+        info [ "Copyright (c) 2014, Edmary Rosado-Vega" ]
+}
+
+#
+#  Viewpoint
+#
+Viewpoint {
+    position -8.0 15.6 45.0
+    orientation 1.0 20.0 0.0 0.1
+}
+
+#
+#  Navigation Info
+#
+NavigationInfo {
+    type [ "WALK", "ANY" ]
+    headlight TRUE
+    speed 2.5
+}
+
+#
+#  Low Intensity Directional Light 
+#
+DirectionalLight {
+    ambientIntensity 0.03
+    direction 0.0 -1.0 -0.25
+}
+
+#
+#  Sky -- Sunset
+#
+Background {
+    skyColor [
+		1.0 0.0 0.8, 0.5 0.0 0.8, 0.0 0.0 0.8 # Blue and Purple mix
+    ]
+    skyAngle [
+        1.371,
+        1.571,
+    ]
+}
+
+#
+# Ocean Floor
+#
+DEF OceanFloor Transform{
+	translation -10 -1 -20
+	children[
+		Inline {url "./commonObjects/ocean_floor.wrl"}
+	]
+}
+Transform { translation 0 0 -240 children USE OceanFloor}
+Transform { translation 0 0 240 children USE OceanFloor}
+Transform { translation -240 0 -240 children USE OceanFloor}
+Transform { translation -240 0 0 children USE OceanFloor}
+Transform { translation -240 0 240 children USE OceanFloor}
+Transform { translation 240 0 0 children USE OceanFloor}
+Transform { translation 240 0 -240 children USE OceanFloor}
+Transform { translation 240 0 240 children USE OceanFloor}
+
+#
+# Ocean
+#
+DEF OceanBlock Transform{
+	translation -10 -1 -20
+	children[
+		Inline {url "./commonObjects/large_ocean_block.wrl"}
+	]
+}
+Transform { translation 0 0 -240 children USE OceanBlock}
+Transform { translation 0 0 240 children USE OceanBlock}
+Transform { translation -240 0 -240 children USE OceanBlock}
+Transform { translation -240 0 0 children USE OceanBlock}
+Transform { translation -240 0 240 children USE OceanBlock}
+Transform { translation 240 0 0 children USE OceanBlock}
+Transform { translation 240 0 -240 children USE OceanBlock}
+Transform { translation 240 0 240 children USE OceanBlock}
+
+#
+#  Islands
+#
+DEF	Islands Group {
+ children [	 
+
+	## Big Island
+	DEF	BigIsland Transform	{
+	translation -10.0 0 -25.0
+		children [
+			Inline {url	"./largerIsland.wrl"}
+		]
+	}
+	
+	## Original Little Mountain
+	DEF	LittleIsland Transform{
+		translation 235.0 0 155.0
+		rotation 0 1 0 .57
+		children [
+			Inline {url	"./smallerIsland.wrl"}
+		]
+	}
+ ]
+}

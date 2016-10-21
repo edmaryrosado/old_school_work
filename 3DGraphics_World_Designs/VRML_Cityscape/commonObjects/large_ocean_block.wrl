@@ -1,0 +1,58 @@
+#VRML V2.0 utf8
+
+
+##   Filename: largeOceanBlock.wrl
+#@   Description: Ocean and Ocean Floor
+##   Author: Edmary Rosado-Vega
+
+DEF	Ocean Transform	{
+##	Texture Under Transparent Water Grid
+	children[
+		DEF OceanSquare Transform {
+			translation	-60 0 -45
+			#rotation -1 1 1 6.28
+			scale 3 1 3
+			children [
+				
+				Inline	{
+					url "./oceanGrid.wrl"
+				}
+			]
+		}
+		
+		# Several Instances of The Ocean Square (Surrounding Original)
+		Transform {translation  0   0  -60 children USE OceanSquare },
+		Transform {translation  0   0  -30 children USE OceanSquare },
+		Transform {translation  0   0   30 children USE OceanSquare },
+		Transform {translation  0   0   60 children USE OceanSquare },
+		Transform {translation  0   0   90 children USE OceanSquare },
+		Transform {translation  0   0  120 children USE OceanSquare },
+		Transform {translation  0   0  150 children USE OceanSquare },
+
+		# Grouped Ocean Squares to Reuse Around Island
+		DEF OceanSquareGroup Group{
+			children[
+				# At translation -48 
+				Transform {translation  -48   0  -60 children USE OceanSquare },
+				Transform {translation  -48   0  -30 children USE OceanSquare },
+				Transform {translation  -48   0    0 children USE OceanSquare },
+				Transform {translation  -48   0   30 children USE OceanSquare },
+				Transform {translation  -48   0   60 children USE OceanSquare },
+				Transform {translation  -48   0   90 children USE OceanSquare },
+				Transform {translation  -48   0  120 children USE OceanSquare },
+				Transform {translation  -48   0  150 children USE OceanSquare },
+			]
+		}
+
+		Transform {translation 24 0 0 children USE OceanSquareGroup},
+		Transform {translation 72 0 0 children USE OceanSquareGroup},
+		Transform {translation 96 0 0 children USE OceanSquareGroup}
+		Transform {translation 120 0 0 children USE OceanSquareGroup}
+		Transform {translation 144 0 0 children USE OceanSquareGroup}
+		Transform {translation 168 0 0 children USE OceanSquareGroup},
+		Transform {translation 192 0 0 children USE OceanSquareGroup},
+		Transform {translation 216 0 0 children USE OceanSquareGroup}
+		
+
+	]
+}

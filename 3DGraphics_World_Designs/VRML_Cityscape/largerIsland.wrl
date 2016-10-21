@@ -1,0 +1,176 @@
+#VRML V2.0 utf8
+# Filename: largerIsland.wrl
+# Description: The larger island of the world containing small cityscape.
+# Author: Edmary Rosado-Vega
+
+#
+#  World Info
+#
+WorldInfo {
+        title "Larger Island"
+        info [ "Copyright (c) 2014, Edmary Rosado-Vega" ]
+}
+
+#
+#  Viewpoint
+#
+Viewpoint {
+    position -8.0 15.6 45.0
+    orientation 1.0 20.0 0.0 0.1
+}
+
+#
+#  Navigation Info
+#
+NavigationInfo {
+    type [ "WALK", "ANY" ]
+    headlight FALSE
+    speed 2.0
+}
+
+#
+#  Low Intensity Directional Light 
+#
+#DirectionalLight {
+#    ambientIntensity 0.03
+ #   direction 0.0 -1.0 -0.5
+#}
+
+#
+#  Sky -- Sunset
+#
+Background {
+    skyColor [
+		1.0 0.0 0.8, 0.5 0.0 0.8, 0.0 0.0 0.8 # Blue and Purple mix
+    ]
+    skyAngle [
+        1.371,
+        1.571,
+    ]
+}
+
+#
+#  Island
+#
+DEF	Island Transform {
+ 	scale 1.5 1 1
+ children [
+	DEF Mainland Transform{
+		#scale 3 3 3
+	children[
+			Inline {url "./largerIslandObjects/larger_island.wrl"}
+		]
+	},
+	 
+
+	## Big Mountain (Modified version of mountain from book)
+	DEF	BigMountain Transform	{
+	scale 3.5 3.5 3.5
+	translation 25.0 -1.5 -15.0
+	rotation 0 1 0 1.57
+		children [
+			Inline {url	"./commonObjects/big_mountain.wrl"}
+		]
+	}
+	
+	## Original Little Mountain
+	DEF	LittleMountain Transform{
+		#scale 3 2.2 3
+		translation -15.0 -1 -25.0
+		children [
+			Inline {url	"./commonObjects/little_mountain.wrl"}
+		]
+	}
+	
+	## Little Mountain Reuse
+	Transform {
+		#scale 2 1 2
+		rotation 0 -1 0 1.5
+		translation -25.0 -2 3
+		children [
+			USE LittleMountain
+		]
+	}
+	## Shore Rocks
+	DEF	ShoreRocks Transform{
+		#scale .75 .75 .75
+		rotation 0 1 0 .17
+		translation -30.0 1 -10.0
+		children [
+			Inline {url	"./commonObjects/shore_rocks.wrl"}
+		]
+	}
+	## Shore Rocks Reuse
+	Transform {
+		translation 65. -4.0 3
+		rotation -1 0 -1 .17
+		children [
+			USE ShoreRocks
+		]
+	}
+ ]
+}
+
+#
+# Coconut Trees
+#
+Group{
+	children[
+		DEF CoconutTree Transform{
+			translation -1 5 1
+			scale .15 .50 .15
+			children[
+				#Inline {url "./commonObjects/coconut_tree.wrl"}
+			]
+		}
+		#Transform { translation   -5.0   1.00  -6.0 rotation  1 0 0 .75 children USE CoconutTree }
+		#Transform { translation   20.0  -2.25  10.0 rotation -1 0 0 .50 children USE CoconutTree }
+		#Transform { translation   10.0  -4.5   20.0 rotation  1 0 0 .15 children USE CoconutTree }
+		#Transform { translation  -15.0  -4.5   22.0 rotation -1 0 0 .15 children USE CoconutTree }
+		#Transform { translation   30.0  -4.5  -20.0 rotation -1 0 0 .75 children USE CoconutTree }
+		#Transform { translation   10.0  -4.5   15.0 rotation  1 0 0 .15 children USE CoconutTree }
+	]
+}
+
+#
+# Scattered Coconuts
+#
+Group{
+	children[
+		DEF Coconut Transform{
+			translation 0 5 0
+			scale .05 .05 .05
+			children[
+				#Inline {url "./commonObjects/coconut.wrl"}
+			]
+		}
+
+		#Transform { translation   20.0    -0.25   10.0 rotation -1 0 0 .75 children USE Coconut }
+		#Transform { translation    8.75   -2.53   20.0 rotation  1 0 0 .15 children USE Coconut }
+		#Transform { translation  -14.75   -2.60   22.0 rotation -1 0 0 .15 children USE Coconut }
+		#Transform { translation   30.0    -2.30  -20.0 rotation -1 0 0 .75 children USE Coconut }
+		#Transform { translation   10.0    -2.00   16.0 rotation  1 0 0 .15 children USE Coconut }
+	]
+}
+
+#
+#	Pier
+#
+DEF	IslandPier Transform {
+	scale .55 .25 .55
+	translation	-44 .5 -2
+	rotation 0 1 0 1.57
+	children [
+		Inline {url	"./commonObjects/pier.wrl"}
+	]
+}
+
+#
+# City Streets
+#
+DEF City Transform{
+	translation 0 .98 2
+	children[
+		Inline{url "./largerIslandObjects/city.wrl"}
+	]
+}
